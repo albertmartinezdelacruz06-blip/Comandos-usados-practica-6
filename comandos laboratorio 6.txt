@@ -1,0 +1,63 @@
+comandos laboratorio 6
+
+sudo apt update && sudo apt install gnupg2 -y
+gpg2 --full-generate-key
+
+
+mkdir ~/seguridad && cd ~/seguridad
+echo "Este es un secreto de estado" > secreto.txt
+
+
+gpg2 --recipient "tu_correo@ejemplo.com" --encrypt secreto.txt
+
+
+cat secreto.txt.gpg
+
+
+gpg2 --decrypt secreto.txt.gpg
+
+
+sudo iptables -A INPUT -p tcp --dport 80 -j DROP
+sudo iptables -A INPUT -p tcp --dport 21 -j DROP
+sudo iptables -A INPUT -p tcp --dport 22 -j DROP
+
+
+sudo iptables -L
+
+
+sudo iptables -F
+
+# Bloquear
+sudo ufw deny 80/tcp
+sudo ufw deny 21/tcp
+sudo ufw deny 22/tcp
+sudo ufw status
+
+# Habilitar
+sudo ufw allow 80/tcp
+sudo ufw allow 21/tcp
+sudo ufw allow 22/tcp
+
+sudo apt install libpam-google-authenticator -y
+google-authenticator
+
+auth required pam_google_authenticator.so
+
+KbdInteractiveAuthentication yes
+UsePAM yes
+
+sudo systemctl restart ssh
+
+ssh usuario@192.168.7.219
+
+
+
+
+
+
+
+
+
+
+
+
